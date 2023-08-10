@@ -1,13 +1,13 @@
-# NOTE: Fork of Skyte's Relative Strength repository.
+# NOTE: Fork of Skyte's (modified by maximbelyayev) Relative Strength repository.
 ---
 
 # relative-strength
-IBD Style Relative Strength Percentile Ranking of Stocks (i.e. 0-100 Score).  
-I also made a TradingView indicator, but it cannot give you the percentile ranking, it just shows you the Relative Strength: https://www.tradingview.com/script/SHE1xOMC-Relative-Strength-IBD-Style/
+IBD Style Relative Strength Percentile Ranking of Stocks (i.e. 0-99 Score).  
+I also made a TradingView indicator, but it cannot give you the same exact result: https://www.tradingview.com/script/pziQwiT2/
 
 ## Daily Generated Outputs
-Stocks: https://github.com/maximbelyayev/rs-log/blob/main/output/rs_stocks.csv  
-Industries: https://github.com/maximbelyayev/rs-log/blob/main/output/rs_industries.csv  
+Stocks: https://github.com/Fred6725/rs-log/blob/main/output/rs_stocks.csv  
+Industries: https://github.com/Fred6725/rs-log/blob/main/output/rs_industries.csv  
   
 
 ## Known Issues
