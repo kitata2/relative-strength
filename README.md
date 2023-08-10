@@ -1,8 +1,8 @@
 # NOTE: Fork of Skyte's (modified by maximbelyayev) Relative Strength repository.
 ---
 
-# relative-strength
-IBD Style Relative Strength Percentile Ranking of Stocks (i.e. 0-99 Score).  
+# RS Rating
+IBD Style Relative Strength Percentile Ranking of Stocks (i.e. 0-99 Score). (Approx 3.9 average deviation score)  
 I also made a TradingView indicator, but it cannot give you the same exact result: https://www.tradingview.com/script/pziQwiT2/
 
 ## Daily Generated Outputs
