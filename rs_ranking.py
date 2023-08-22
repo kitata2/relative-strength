@@ -8,6 +8,7 @@ from scipy.stats import linregress
 import yaml
 from rs_data import TD_API, cfg, read_json
 from functools import reduce
+import datetime
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -71,6 +72,36 @@ def quarters_perf(closes: pd.Series, n):
     perf_cum = (pct_chg + 1).cumprod() - 1
     return perf_cum.tail(1).item()
 
+#Added with ChatGPT------
+def generate_tradingview_csv(percentile_values, first_rs_values):
+    lines = []  # Store the lines in a list
+    
+    # Get yesterday's date
+    trading_days = 0
+    yesterday = datetime.date.today() - datetime.timedelta(days=1)
+
+    # Iterate through the desired percentiles in descending order
+    for percentile in sorted(percentile_values):
+        rs_value = first_rs_values[percentile]
+
+        # Iterate five times for each percentile
+        for _ in range(5):
+            trading_date = yesterday - datetime.timedelta(days=trading_days)
+            date_str = trading_date.strftime("%Y%m%dT")
+            
+            # Construct the CSV row
+            csv_row = f"{date_str},0,1000,0,{rs_value},0\n"
+            lines.append(csv_row)  # Add the line to the list
+
+            # Increment the trading_days count
+            trading_days += 1
+
+    # Reverse the order of the lines and concatenate them
+    reversed_lines = reversed(lines)
+    csv_content = ''.join(reversed_lines)
+
+    return csv_content
+#End of Added with ChatGPT------
 
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength"""
@@ -147,9 +178,35 @@ def rankings():
             out_tickers_count = out_tickers_count + 1
     df = df.head(out_tickers_count)
 
+    #Add with ChatGPT------
+    # Create a list of desired percentiles
+    percentile_values = [98,89,69,49,29,9,1]
+
+    # Create a dictionary to store the first value of df[TITLE_RS] for each percentile
+    first_rs_values = {}
+
+    # Iterate through the desired percentiles
+    for percentile in percentile_values:
+        # Find the first row in the DataFrame where TITLE_PERCENTILE matches the desired percentile
+        first_row = df[df[TITLE_PERCENTILE] == percentile].iloc[0]
+        
+        # Get the value of df[TITLE_RS] for this row
+        rs_value = first_row[TITLE_RS]
+        
+        # Store the rs_value in the dictionary with the percentile as the key
+        first_rs_values[percentile] = rs_value
+
+    # Generate the TradingView CSV content
+    tradingview_csv_content = generate_tradingview_csv(percentile_values, first_rs_values)
+
+    # Save the TradingView CSV content to a file
+    with open(os.path.join(DIR, "output", "RSRATING.csv"), "w") as csv_file:
+        csv_file.write(tradingview_csv_content)
+    #End of add with ChatGPT------
+
     df.to_csv(os.path.join(DIR, "output", f'rs_stocks{suffix}.csv'), index = False)
     dfs.append(df)
-
+    
     # industries
     def getDfView(industry_entry):
         return industry_entry["info"]
