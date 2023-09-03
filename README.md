@@ -9,6 +9,8 @@ I also made a TradingView indicator, updated to use data generated here: https:/
 Stocks: https://github.com/Fred6725/rs-log/blob/main/output/rs_stocks.csv  
 Industries: https://github.com/Fred6725/rs-log/blob/main/output/rs_industries.csv  
   
+# Buy Me A Coffee
+<a href="https://www.buymeacoffee.com/fred6725" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ## Known Issues
 Unfortunately the close prices loaded from the price history API are not always split adjusted. So if a stock had a split recently there is a chance the relative strength value will be wrong...
