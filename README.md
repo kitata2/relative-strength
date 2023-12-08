@@ -16,9 +16,13 @@ Industries: https://github.com/Fred6725/rs-log/blob/main/output/rs_industries.cs
 Unfortunately the close prices loaded from the price history API are not always split adjusted. So if a stock had a split recently there is a chance the relative strength value will be wrong...
 ## Calculation
 Yearly performance of stock divided by SPY performance during the same period (`SPY` by default).
+
 RS Score for Stocks = 40% * P3 + 20% * P6 + 20% * P9 + 20% * P12
+
 RS Score for SPY    = 40% * P3 + 20% * P6 + 20% * P9 + 20% * P12
+
 With P3 the performance of the 3 last month. (P3 = Close/Close[63], for 63 days back)
+
 Formula: RS Score = (1 + RS Score for Stocks) / (1 + RS Score for SPY)
 
 Then all stocks are ranked from largest to smallest and a percentile is assigned from 99 to 0.
