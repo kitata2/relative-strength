@@ -3,8 +3,9 @@ name: Output
 on:
   push:
      branches: [ main ]
-  # schedule:
-  #   - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
       build:
